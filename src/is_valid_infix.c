@@ -20,7 +20,7 @@ static int count_open_parens(const char *infix_string) {
   int open_paren_count = 0;
 
   for(i=0; i < strlen(infix_string); ++i) {
-    if( infix_string[i] == ')' ) {
+    if( is_open_paren(infix_string[i]) ) {
       ++open_paren_count;
     }
   }
@@ -32,7 +32,7 @@ static int count_closed_parens(const char *infix_string) {
   int closed_paren_count = 0;
 
   for(i=0; i < strlen(infix_string); ++i) {
-    if( infix_string[i] == '(' ) {
+    if( is_closed_paren(infix_string[i]) ) {
       ++closed_paren_count;
     }
   }
@@ -53,10 +53,10 @@ static bool has_open_parens_before_closed_parens(const char *infix_string) {
   int open_paren_count = 0;
 
   for(i=0; i < strlen(infix_string); ++i) {
-    if( infix_string[i] == '(' ) {
+    if( is_open_paren(infix_string[i]) ) {
       ++open_paren_count;
     }
-    if( infix_string[i] == ')' ) {
+    if( is_closed_paren(infix_string[i]) ) {
       ++closed_paren_count;
     }
     if( closed_paren_count > open_paren_count )
